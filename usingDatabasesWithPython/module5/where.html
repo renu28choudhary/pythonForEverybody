@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Map</title>
+    <!-- Replace 'YOUR_API_KEY' with your Google Maps API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script>
+        var locations = [];
+
+        // This function loads data (for now we directly define a mock-up here)
+        function loadLocations() {
+            // For example, let's use the Hagerstown Weis Market location
+            locations.push({
+                lat: 39.641762, 
+                lng: -77.727798, 
+                name: "Weis Market, Hagerstown"
+            });
+            initMap();
+        }
+
+        // Initialize the map function to render the location(s)
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: 39.641762, lng: -77.727798} // Set initial center to Hagerstown
+            });
+
+            // Add markers to the map
+            locations.forEach(function(location) {
+                var marker = new google.maps.Marker({
+                    position: {lat: location.lat, lng: location.lng},
+                    map: map,
+                    title: location.name
+                });
+            });
+        }
+
+        // Load locations when page is ready
+        window.onload = loadLocations;
+    </script>
+</head>
+<body>
+    <h1>Geoloca
